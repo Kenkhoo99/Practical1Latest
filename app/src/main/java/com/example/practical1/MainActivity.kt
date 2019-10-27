@@ -11,7 +11,9 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var diceImage : ImageView //late initialisation
+    lateinit var diceImage : ImageView
+    lateinit var diceImage1 : ImageView
+    lateinit var diceImage2 : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,18 +22,24 @@ class MainActivity : AppCompatActivity() {
         val rollButton: Button = findViewById(R.id.roll_button)
         rollButton.setOnClickListener { rollDice() }
 
-       // val countButton: Button = findViewById(R.id.count_button)
-        //countButton.setOnClickListener{countUp()}
-
     }
 
     private fun rollDice() {
 
-        val randomInt = Random().nextInt(6) + 1
-        val randomInt1 = Random().nextInt(6) + 1
-        val randomInt2 = Random().nextInt(6) + 1
-
         val diceImage: ImageView = findViewById(R.id.dice_image)
+        val diceImage1: ImageView = findViewById(R.id.dice_image1)
+        val diceImage2: ImageView = findViewById(R.id.dice_image2)
+
+
+        diceImage.setImageResource(randomNum())
+        diceImage1.setImageResource(randomNum())
+        diceImage2.setImageResource(randomNum())
+
+    }
+
+    private fun randomNum() : Int
+    {
+        val randomInt = Random().nextInt(6) + 1
 
         val drawableResource = when (randomInt) {
             1 -> R.drawable.dice_1
@@ -42,10 +50,8 @@ class MainActivity : AppCompatActivity() {
             else -> R.drawable.dice_6
         }
 
-        diceImage.setImageResource(drawableResource)
-
+        return drawableResource
     }
-
 
    /*
     private fun countUp() {
